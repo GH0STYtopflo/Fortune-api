@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Fortune;
 
-function extractAndSeed(Factory $factory): void
+extractAndSeed();
+
+function extractAndSeed(): void
 {
     if (!file_exists('/usr/share/fortune')) {
         throw new RuntimeException('Fortune database not found. Make sure you have fortune-mod installed');
@@ -15,7 +17,9 @@ function extractAndSeed(Factory $factory): void
             $fortunes = extractFortunes($entry, '/usr/share/fortune');
 
             foreach ($fortunes as $fortune) {
-                $factory->create(['body' => $fortune]);
+                Fortune::create([
+                    'text' => $fortune,
+                ]);
             }
         }
 
@@ -60,3 +64,4 @@ function extractFortunes(string $file, string $parent): array
     fclose($stream);
     return $fortunes;
 }
+
