@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Sanctum;
 
 Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
