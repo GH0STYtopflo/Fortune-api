@@ -12,7 +12,7 @@ class Fortune extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class, table: 'fortune_users')->withTimestamps();
     }
 
     public function category(): BelongsTo

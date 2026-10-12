@@ -24,6 +24,6 @@ class User extends Authenticatable
 
     public function fortunes(): BelongsToMany
     {
-        return $this->belongsToMany(Fortune::class)->withTimestamps();
+        return $this->belongsToMany(Fortune::class, table: 'fortune_users')->withTimestamps();
     }
 }
