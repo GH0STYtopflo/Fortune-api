@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FortuneUserController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest', 'throttle:10,2'])->group(function () {
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}/fortunes/{fortune}', [FortuneUserController::class, 'get']);
 
     Route::delete('/users/{user}/fortunes/{fortune}', [FortuneUserController::class, 'detach']);
+
+    Route::delete('/users/{user}:deactivate', [UserController::class, 'deactivate']);
 });

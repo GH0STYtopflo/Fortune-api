@@ -23,6 +23,13 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
+        $user = User::withTrashed()->whereUsername($request->validated()['username'])->first();
+
+        if ($user->deleted_at !== null) {
+            $user->restore();
+        }
+
+
        if (Auth::once($request->validated())) {
            $user = Auth::user();
 

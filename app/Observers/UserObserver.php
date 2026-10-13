@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\User;
+use App\Notifications\UserAccountDeactivated;
 use App\Notifications\Welcome;
 
 class UserObserver
@@ -45,5 +46,10 @@ class UserObserver
     public function forceDeleted(User $user): void
     {
         //
+    }
+
+    public function deleting(User $user): void
+    {
+        $user->notify(new UserAccountDeactivated());
     }
 }
