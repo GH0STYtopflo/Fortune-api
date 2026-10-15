@@ -15,7 +15,7 @@ class UserPolicy
     {
     }
 
-    public function deactivate(User $user): Response
+    public function userResource(User $user): Response
     {
         return $user->is(Auth::user()) ? Response::allow() : Response::denyAsNotFound();
     }

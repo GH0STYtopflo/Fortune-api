@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{user}/fortunes/{fortune}', [FortuneUserController::class, 'detach']);
 
     Route::delete('/users/{user}:deactivate', [UserController::class, 'deactivate']);
+
+    Route::get('/users/{user}:export', [UserController::class, 'export']);
 });
